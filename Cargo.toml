@@ -2,3 +2,6 @@
 name = "interrupts"
 version = "0.1.0"
 authors = ["k0pernicus <antonin.carette@gmail.com>"]
+
+[dependencies]
+x86_64 = "0.3.1"
