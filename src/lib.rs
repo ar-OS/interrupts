@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(const_fn)]
 
 #![feature(abi_x86_interrupt)]
 extern crate x86_64;
@@ -9,6 +10,10 @@ extern crate lazy_static;
 
 #[macro_use]
 extern crate vga;
+
+extern crate spin;
+
+extern crate intel_8259;
 
 mod handlers;
 use handlers::{breakpoint_handler, double_fault_handler};
