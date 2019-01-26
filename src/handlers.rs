@@ -10,6 +10,7 @@ pub extern "x86-interrupt" fn breakpoint_handler(stack_frame: &mut ExceptionStac
     echo!(BUF_WRITER.lock(), "Breakpoint\n{:?}", stack_frame);
 }
 
-
-
+pub extern "x86-interrupt" fn timer_handler(stack_frame: &mut ExceptionStackFrame) {
+    echo!(BUF_WRITER.lock(), ".");
+}
 
