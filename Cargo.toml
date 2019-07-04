@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["k0pernicus <antonin.carette@gmail.com>"]
 
 [dependencies]
-x86_64 = "0.3.1"
+x86_64 = "0.7.1"
 vga = { path="../vga" }
 intel_8259 = { git = "https://github.com/ar-OS/intel_8259", branch = "master" }
 spin = "0.4.6"

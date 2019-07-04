@@ -1,10 +1,10 @@
 use core::fmt::Write;
 use vga::buffer::BUF_WRITER;
-use x86_64::structures::idt::ExceptionStackFrame;
-use {PICS, TIMER_INTERRUPT_ID};
+use x86_64::structures::idt::InterruptStackFrame;
+use {KEYBOARD_INTERRUPT_ID, PICS, TIMER_INTERRUPT_ID};
 
 pub extern "x86-interrupt" fn double_fault_handler(
-    stack_frame: &mut ExceptionStackFrame,
+    stack_frame: &mut InterruptStackFrame,
     error_code: u64,
 ) {
     echo!(
@@ -15,11 +15,14 @@ pub extern "x86-interrupt" fn double_fault_handler(
     );
 }
 
-pub extern "x86-interrupt" fn breakpoint_handler(stack_frame: &mut ExceptionStackFrame) {
+pub extern "x86-interrupt" fn breakpoint_handler(stack_frame: &mut InterruptStackFrame) {
     echo!(BUF_WRITER.lock(), "Breakpoint\n{:?}", stack_frame);
 }
 
-pub extern "x86-interrupt" fn timer_handler(stack_frame: &mut ExceptionStackFrame) {
-    echo!(BUF_WRITER.lock(), ".");
+pub extern "x86-interrupt" fn timer_handler(_stack_frame: &mut InterruptStackFrame) {
     unsafe { PICS.lock().send_end_interrupt(TIMER_INTERRUPT_ID) };
+}
+
+pub extern "x86-interrupt" fn keyboard_handler(_stack_frame: &mut InterruptStackFrame) {
+    unsafe { PICS.lock().send_end_interrupt(KEYBOARD_INTERRUPT_ID) };
 }
