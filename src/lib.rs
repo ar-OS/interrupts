@@ -28,8 +28,7 @@ pub static PICS: spin::Mutex<Intel8259> =
 lazy_static! {
     static ref IDT: InterruptDescriptorTable = {
         let mut idt = InterruptDescriptorTable::new();
-        // Update the inte
-        rrupt handlers as the struct is mutable
+        // Update the interrupt handlers as the struct is mutable
         idt.breakpoint.set_handler_fn(handlers::breakpoint_handler);
         idt.double_fault.set_handler_fn(handlers::double_fault_handler);
         idt[usize::from(TIMER_INTERRUPT_ID)].set_handler_fn(handlers::timer_handler);
