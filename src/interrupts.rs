@@ -18,7 +18,6 @@ pub fn breakpoint(stack_frame: &mut InterruptStackFrame) {
 }
 
 pub fn timer() {
-    echo!("{}", ".");
     unsafe { PICS.lock().send_end_interrupt(TIMER_INTERRUPT_ID) };
 }
 
