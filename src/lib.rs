@@ -15,7 +15,10 @@ extern crate spin;
 extern crate intel_8259;
 use intel_8259::intel8259::Intel8259;
 
+extern crate keyboard;
+
 mod handlers;
+mod interrupts;
 pub mod utils;
 
 pub const MASTER_OFFSET: u8 = 32;
