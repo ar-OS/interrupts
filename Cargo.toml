@@ -1,6 +1,6 @@
 [package]
 name = "interrupts"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["k0pernicus <antonin.carette@gmail.com>"]
 
 [dependencies]
