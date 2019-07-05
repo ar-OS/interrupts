@@ -9,7 +9,6 @@ const KEYBOARD_CONTROLLER_PORT: u16 = 0x60;
 
 pub fn double_fault(stack_frame: &mut InterruptStackFrame, error_code: u64) {
     echo!(
-        BUF_WRITER.lock(),
         "Double Fault\nError code: {}\n{:?}",
         error_code,
         stack_frame
@@ -17,10 +16,11 @@ pub fn double_fault(stack_frame: &mut InterruptStackFrame, error_code: u64) {
 }
 
 pub fn breakpoint(stack_frame: &mut InterruptStackFrame) {
-    echo!(BUF_WRITER.lock(), "Breakpoint\n{:?}", stack_frame);
+    echo!("Breakpoint\n{:?}", stack_frame);
 }
 
 pub fn timer() {
+    echo!("{}", ".");
     unsafe { PICS.lock().send_end_interrupt(TIMER_INTERRUPT_ID) };
 }
 
@@ -32,7 +32,7 @@ pub fn keyboard() {
     if key.is_some() {
         let keycode = key.unwrap().keycode();
         if keycode.is_some() {
-            echo!(BUF_WRITER.lock(), "{}", keycode.unwrap());
+            echo!("{}", keycode.unwrap());
         }
     }
     unsafe { PICS.lock().send_end_interrupt(KEYBOARD_INTERRUPT_ID) };
