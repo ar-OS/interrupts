@@ -1,6 +1,4 @@
-use core::fmt::Write;
 use keyboard::{set::Set1, Keyboard};
-use vga::buffer::BUF_WRITER;
 use x86_64::instructions::port::Port;
 use x86_64::structures::idt::InterruptStackFrame;
 use {KEYBOARD_INTERRUPT_ID, PICS, TIMER_INTERRUPT_ID};

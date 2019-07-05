@@ -6,6 +6,6 @@ use x86_64::instructions;
 #[allow(dead_code)]
 pub fn wait_for_interrupt() -> ! {
     loop {
-        instructions::hlt()
+        instructions::hlt();
     }
 }
