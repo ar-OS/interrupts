@@ -5,7 +5,7 @@ authors = ["k0pernicus <antonin.carette@gmail.com>"]
 
 [dependencies]
 x86_64 = "0.7.1"
-vga = { path="../vga" }
+vga = { git = "https://github.com/ar-OS/vga", tag = "v0.1.0" }
 intel_8259 = { git = "https://github.com/ar-OS/intel_8259", tag = "v0.1.1" }
 keyboard = { git = "https://github.com/ar-OS/keyboard", tag = "v0.1.1" }
 spin = "0.4.6"
